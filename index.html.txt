@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sei mein Valentine </title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: pink;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #yes {
+      background: #ff4d6d;
+      color: white;
+      transform: scale(1);
+    }
+
+    #no {
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Willst du mein Valentine sein 💘</h2>
+    <div class="buttons">
+      <button id="yes">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+
+  <script>
+    let scale = 1;
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+
+    noBtn.addEventListener("click", () => {
+      scale += 0.2;
+      yesBtn.style.transform = `scale(${scale})`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      alert("Gute Wahl 😌❤️");
+    });
+  </script>
+
+</body>
+</html>
