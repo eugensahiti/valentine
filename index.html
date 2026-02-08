@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Sei mein Valentine </title>
+  <title>💘 Für Jessi</title>
   <style>
     body {
       margin: 0;
@@ -10,73 +10,155 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: pink;
+      background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
       font-family: Arial, sans-serif;
+      overflow: hidden;
     }
 
     .card {
       background: white;
-      padding: 30px;
-      border-radius: 20px;
+      padding: 35px;
+      border-radius: 25px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      max-width: 90%;
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
     }
 
     .buttons {
       display: flex;
       gap: 20px;
       justify-content: center;
-      margin-top: 20px;
+      position: relative;
     }
 
     button {
-      padding: 12px 24px;
+      padding: 14px 28px;
       font-size: 18px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     #yes {
       background: #ff4d6d;
       color: white;
-      transform: scale(1);
     }
 
     #no {
-      background: #ccc;
+      background: #eee;
+      position: relative;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 2s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-80px);
+        opacity: 0;
+      }
+    }
+
+    .fullscreen {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 26px;
+      padding: 30px;
+      z-index: 999;
+      flex-direction: column;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <h2>Willst du mein Valentine sein 💘</h2>
+    <h2>💖 Hey Jessi</h2>
+    <p>Ich wollte dich etwas fragen…</p>
+
+    <h2>Willst du mein Valentine sein? 💘</h2>
+
     <div class="buttons">
-      <button id="yes">Yes</button>
-      <button id="no">No</button>
+      <button id="yes">Ja 💞</button>
+      <button id="no">Nein 🙈</button>
     </div>
   </div>
 
   <script>
-    let scale = 1;
     const yesBtn = document.getElementById("yes");
     const noBtn = document.getElementById("no");
 
+    let noCount = 0;
+
+    function spawnHeart(x, y) {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💗";
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+
+    document.addEventListener("click", e => {
+      spawnHeart(e.clientX, e.clientY);
+    });
+
+    noBtn.addEventListener("mouseenter", () => {
+      noBtn.style.transform =
+        `translate(${Math.random()*120-60}px, ${Math.random()*80-40}px)`;
+    });
+
     noBtn.addEventListener("click", () => {
-      scale += 0.2;
-      yesBtn.style.transform = `scale(${scale})`;
+      noCount++;
+      if (noCount >= 3) {
+        const screen = document.createElement("div");
+        screen.className = "fullscreen";
+        screen.innerHTML = `
+          <h2>🥺💖</h2>
+          <p>Okay Jessi… ich frag nur, weil du mir wirklich wichtig bist.</p>
+          <p>Und egal was du klickst – ich mag dich sehr 💕</p>
+        `;
+        document.body.appendChild(screen);
+      }
     });
 
     yesBtn.addEventListener("click", () => {
-      alert("Gute Wahl 😌❤️");
+      const screen = document.createElement("div");
+      screen.className = "fullscreen";
+      screen.innerHTML = `
+        <h2>💘 Yay!!</h2>
+        <p>Das macht mich richtig glücklich, Jessi 🥰</p>
+        <p>Danke, dass du mein Valentine bist 💖</p>
+      `;
+      document.body.appendChild(screen);
     });
   </script>
 
 </body>
 </html>
+
+
+
